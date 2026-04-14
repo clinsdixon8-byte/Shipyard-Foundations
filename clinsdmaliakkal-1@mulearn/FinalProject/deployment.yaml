@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: final-web-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-server
+  template:
+    metadata:
+      labels:
+        app: web-server
+    spec:
+      containers:
+      - name: nginx-container
+        image: shipyard-final-app:v1
+        ports:
+        - containerPort: 80
+        env:
+        - name: STUDENT_NAME
+          value: "YOUR_NAME_HERE" # Update this!
